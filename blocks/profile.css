@@ -48,7 +48,7 @@
   line-height: 1;
 }
 .profile__add-btn {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   background-color: rgba(33, 33, 33, 1);
   color: rgba(252, 245, 229, 1);
   margin-left: auto;
@@ -74,7 +74,7 @@
   margin: auto 0 auto;
 }
 
-@media screen and (max-width: 627px){
+@media screen and (max-width: 627px) {
   .profile {
     width: 288px;
     flex-direction: column;
