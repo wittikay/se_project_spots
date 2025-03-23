@@ -1,0 +1,10 @@
+.footer {
+  background-color: rgba(252, 245, 229, 1);
+  margin: 0;
+  margin: 60px 0;
+}
+.footer__copyright {
+  text-align: center;
+  margin: 0;
+  padding: 0 0 60px;
+}
