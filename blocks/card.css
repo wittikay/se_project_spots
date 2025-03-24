@@ -32,3 +32,16 @@
   background-image: url(../images/Like\ Icon.svg);
   margin-top: auto;
 }
+
+@media screen and (max-width: 430px) {
+  .card__image {
+    width: 300px;
+    height: 300px;
+  }
+  .card {
+    width: 300px;
+  }
+  .card__content {
+    max-width: 300px;
+  }
+}
