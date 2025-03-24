@@ -18,6 +18,7 @@ This project is designed to be responsive to various screen sizes, allowing for 
 ## Deployment
 This site is deployed to GitHub Pages here:
 - Link: https://wittikay.github.io/se_project_spots/
-
+## Project Demo / Images
+Video: https://drive.google.com/file/d/1b74H-MrdNC6Fy0TBGjIUTSG_4pk8KZdf/view?usp=sharing
 ![alt text](./images/image.png)
 ![alt text](./images/image-1.png)
