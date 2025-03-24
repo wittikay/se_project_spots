@@ -20,5 +20,3 @@ This site is deployed to GitHub Pages here:
 - Link: https://wittikay.github.io/se_project_spots/
 ## Project Demo / Images
 Video: https://drive.google.com/file/d/1cETKARSZVSn6FFuOFIr9dTgfAqbCYTlS/view?usp=sharing
-![alt text](./images/image.png)
-![alt text](./images/image-1.png)
