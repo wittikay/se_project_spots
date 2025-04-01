@@ -1,0 +1,120 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  padding: 10px;
+}
+
+.modal_is-opened {
+  visibility: visible;
+}
+
+.modal__container {
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 8px;
+  max-width: 730px;
+  padding: 36px 50px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal__title{
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.modal__close-btn{
+  background-color: transparent;
+  border-style: none;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 32px;
+  right: 50px;
+  opacity: 40%;
+}
+
+.modal__close-btn:hover{
+  cursor: pointer;
+  opacity: 100%;
+}
+
+.modal__label {
+  line-height: 110.00000000000001%;
+  display:flex;
+  flex-direction: column;
+  padding: 0;
+  margin-top: 32px;
+}
+
+.modal__input{
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 8px;
+  padding: 16px 12px;
+  border-width: 1px;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: rgba(33, 33, 33, 0.4);
+}
+
+.modal__input::placeholder{
+  font-size: 20px;
+  color: rgba(33, 33, 33, 0.3);
+}
+
+.modal__input:hover{
+  border-color: rgba(33, 33, 33, 1);
+  cursor: pointer;
+}
+
+.modal__submit-btn{
+  color: white;
+  background-color: rgba(33, 33, 33, 1);
+  font-weight: 500;
+  font-size: 16px;
+  width: 100%;
+  max-width: 156px;
+  padding: 18px 32px;
+  margin-top: 32px;
+  border-radius: 8px;
+  border-style: none;
+}
+
+.modal__submit-btn:hover{
+  cursor: pointer;
+  background-color: rgba(33, 33, 33, 0.8);
+}
+
+@media screen and (max-width: 800px) {
+  .modal__title{
+    font-size: 20px;
+    margin-top: 12px;
+  }
+  .modal__close-btn{
+    top: 12px;
+    right: 12px;
+  }
+  .modal__submit-btn {
+    width: 100%;
+    max-width: none;
+  }
+  .modal__container{
+    padding: 12px 12px;
+  }
+  .modal__input::placeholder{
+    font-size: 16px;
+  }
+}
