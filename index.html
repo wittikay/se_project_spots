@@ -128,63 +128,65 @@
       <footer class="footer">
         <p class="footer__copyright">2025 &copy; Spots</p>
       </footer>
-      <div class="modal modal_is-opened">
+      <div class="modal" id="edit-profile-modal">
         <div class="modal__container">
           <h2 class="modal__title">Edit profile</h2>
           <button type="submit" class="modal__close-btn">
-            <img src="./images/close-iconblk.svg" alt="A close symbol, defined by an X.">
+            <img
+              src="./images/close-iconblk.svg"
+              alt="A close symbol, defined by an X."
+            />
           </button>
           <form name="edit-profile" class="modal__form">
-            <label
-              for="name"
-              class="modal__label">
+            <label for="name" class="modal__label">
               Name
               <input
                 id="name"
                 type="text"
                 placeholder="Type your name"
-                class="modal__input">
+                class="modal__input"
+              />
             </label>
-            <label
-              for="description"
-              class="modal__label">
+            <label for="description" class="modal__label">
               Description
               <input
                 id="description"
                 type="text"
                 placeholder="Describe yourself"
-                class="modal__input">
+                class="modal__input"
+              />
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
         </div>
       </div>
-      <div class="modal modal_is-opened">
+      <div class="modal" id= "new-post-modal">
         <div class="modal__container">
           <h2 class="modal__title">New post</h2>
           <button type="submit" class="modal__close-btn">
-            <img src="./images/close-iconblk.svg" alt="A close symbol, defined by an X.">
+            <img
+              src="./images/close-iconblk.svg"
+              alt="A close symbol, defined by an X."
+            />
           </button>
           <form name="edit-profile" class="modal__form">
-            <label
-              for="name"
-              class="modal__label">
+            <label for="name" class="modal__label">
               Image link
               <input
                 id="link"
                 type="url"
                 placeholder="Paste a link to the picture"
-                class="modal__input">
+                class="modal__input"
+              />
             </label>
-            <label
-              for="description"
-              class="modal__label">
+            <label for="description" class="modal__label">
               Caption
               <input
                 id="caption"
                 type="text"
                 placeholder="Type your caption"
-                class="modal__input">
+                class="modal__input"
+              />
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
