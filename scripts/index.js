@@ -29,25 +29,57 @@ const initialCards = [
     link: "https://images.unsplash.com/photo-1491234323906-4f056ca415bc?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDE5fF9oYi1kbDRRLTRVfHxlbnwwfHx8fHw%3D",
   },
 ];
-
+//Edit profile
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileEditModal = document.querySelector("#edit-profile-modal");
 const closeEditModalBtn = profileEditModal.querySelector(".modal__close-btn");
+const editProfileForm = profileEditModal.querySelector(".modal__form");
 
-profileEditBtn.addEventListener("click", function (){
+const profileName = document.querySelector(".profile__name");
+const profileDescription = document.querySelector(".profile__description");
+const editProfileName = profileEditModal.querySelector("#name");
+const editProfileDescription = profileEditModal.querySelector("#description");
+
+profileEditBtn.addEventListener("click", function () {
+  editProfileName.value = profileName.textContent;
+  editProfileDescription.value = profileDescription.textContent;
   profileEditModal.classList.add("modal_is-opened");
 });
-closeEditModalBtn.addEventListener("click", function(){
+closeEditModalBtn.addEventListener("click", function () {
   profileEditModal.classList.remove("modal_is-opened");
 });
 
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  profileName.textContent = editProfileName.value;
+  profileDescription.textContent = editProfileDescription.value;
+  profileEditModal.classList.remove("modal_is-opened");
+}
+
+editProfileForm.addEventListener("submit", handleProfileFormSubmit);
+
+// Add post
 const profileAddBtn = document.querySelector(".profile__add-btn");
 const profileAddModal = document.querySelector("#new-post-modal");
 const closeAddModalBtn = profileAddModal.querySelector(".modal__close-btn");
+const profileAddForm = profileAddModal.querySelector(".modal__form");
 
-profileAddBtn.addEventListener("click", function(){
+const profileAddLink = profileAddModal.querySelector("#link");
+const profileAddCaption = profileAddModal.querySelector("#caption");
+
+profileAddBtn.addEventListener("click", function () {
   profileAddModal.classList.add("modal_is-opened");
 });
-closeAddModalBtn.addEventListener("click", function(){
+closeAddModalBtn.addEventListener("click", function () {
   profileAddModal.classList.remove("modal_is-opened");
 });
+
+function handleProfileAddFormSubmit(evt) {
+  evt.preventDefault();
+  console.log(profileAddLink.value);
+  console.log(profileAddCaption.value);
+
+  profileAddForm.classList.remove("modal_is-opened");
+}
+
+profileAddForm.addEventListener("submit", handleProfileAddFormSubmit);
