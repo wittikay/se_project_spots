@@ -79,7 +79,7 @@ function handleProfileAddFormSubmit(evt) {
   console.log(profileAddLink.value);
   console.log(profileAddCaption.value);
 
-  profileAddForm.classList.remove("modal_is-opened");
+  profileAddModal.classList.remove("modal_is-opened");
 }
 
 profileAddForm.addEventListener("submit", handleProfileAddFormSubmit);
