@@ -1,3 +1,4 @@
+
 const initialCards = [
   {
     name: "A multi-story library filled with bookshelves.",
@@ -40,20 +41,27 @@ const profileDescription = document.querySelector(".profile__description");
 const editProfileName = profileEditModal.querySelector("#name");
 const editProfileDescription = profileEditModal.querySelector("#description");
 
+const openModal = function (modal) {
+  modal.classList.add("modal_is-opened");
+}
+const closeModal = function (modal) {
+  modal.classList.remove("modal_is-opened");
+}
+
 profileEditBtn.addEventListener("click", function () {
   editProfileName.value = profileName.textContent;
   editProfileDescription.value = profileDescription.textContent;
-  profileEditModal.classList.add("modal_is-opened");
+  openModal(profileEditModal);
 });
 closeEditModalBtn.addEventListener("click", function () {
-  profileEditModal.classList.remove("modal_is-opened");
+  closeModal(profileEditModal);
 });
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = editProfileName.value;
   profileDescription.textContent = editProfileDescription.value;
-  profileEditModal.classList.remove("modal_is-opened");
+  closeModal(profileEditModal);
 }
 
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
@@ -68,10 +76,10 @@ const profileAddLink = profileAddModal.querySelector("#link");
 const profileAddCaption = profileAddModal.querySelector("#caption");
 
 profileAddBtn.addEventListener("click", function () {
-  profileAddModal.classList.add("modal_is-opened");
+  openModal(profileAddModal);
 });
 closeAddModalBtn.addEventListener("click", function () {
-  profileAddModal.classList.remove("modal_is-opened");
+  closeModal(profileAddModal);
 });
 
 function handleProfileAddFormSubmit(evt) {
@@ -79,7 +87,12 @@ function handleProfileAddFormSubmit(evt) {
   console.log(profileAddLink.value);
   console.log(profileAddCaption.value);
 
-  profileAddModal.classList.remove("modal_is-opened");
+  closeModal(profileAddModal);
 }
 
 profileAddForm.addEventListener("submit", handleProfileAddFormSubmit);
+
+initialCards.forEach((card) => {
+  console.log(card);
+});
+
