@@ -1,4 +1,3 @@
-
 const initialCards = [
   {
     name: "A multi-story library filled with bookshelves.",
@@ -43,10 +42,10 @@ const editProfileDescription = profileEditModal.querySelector("#description");
 
 const openModal = function (modal) {
   modal.classList.add("modal_is-opened");
-}
+};
 const closeModal = function (modal) {
   modal.classList.remove("modal_is-opened");
-}
+};
 
 profileEditBtn.addEventListener("click", function () {
   editProfileName.value = profileName.textContent;
@@ -84,15 +83,41 @@ closeAddModalBtn.addEventListener("click", function () {
 
 function handleProfileAddFormSubmit(evt) {
   evt.preventDefault();
-  console.log(profileAddLink.value);
-  console.log(profileAddCaption.value);
-
+  const inputValues = {
+    name: profileAddCaption.value,
+    link: profileAddLink.value,
+  };
+  let createdCard = getCardElement(inputValues);
+  cardsList.prepend(createdCard);
   closeModal(profileAddModal);
 }
 
 profileAddForm.addEventListener("submit", handleProfileAddFormSubmit);
 
-initialCards.forEach((card) => {
-  console.log(card);
-});
+const cardsList = document.querySelector(".cards__list");
 
+const cardTemplate = document
+  .querySelector("#cards__template")
+  .content.querySelector(".card");
+
+function getCardElement(data) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardTitle = cardElement.querySelector(".card__title");
+  const cardImage = cardElement.querySelector(".card__image");
+  const likeBtn = cardElement.querySelector(".card__like-btn");
+
+  likeBtn.addEventListener("click", () => {
+    likeBtn.classList.toggle("card__like-btn_active");
+    opacity: 1;
+  });
+  cardTitle.textContent = data.name;
+  cardImage.alt = data.name;
+  cardImage.src = data.link;
+
+  return cardElement;
+}
+
+initialCards.forEach(function (item) {
+  let createdCard = getCardElement(item);
+  cardsList.prepend(createdCard);
+});
