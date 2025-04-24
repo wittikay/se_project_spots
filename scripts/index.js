@@ -87,6 +87,12 @@ closeAddModalBtn.addEventListener("click", function () {
   closeModal(profileAddModal);
 });
 
+// Preview image
+const previewModal = document.querySelector("#preview-modal");
+const closePreviewModalBtn = previewModal.querySelector(".modal__close-btn_preview");
+let previewImage = previewModal.querySelector(".modal__image");
+let previewCaption = previewModal.querySelector(".modal__caption");
+
 function handleProfileAddFormSubmit(evt) {
   evt.preventDefault();
   const inputValues = {
@@ -124,6 +130,17 @@ function getCardElement(data) {
     cardElement = null;
   });
 
+  cardImage.addEventListener("click", () => {
+    previewImage.src = data.link;
+    previewImage.alt = data.name;
+    previewCaption.textContent = data.name;
+    openModal(previewModal);
+  });
+  closePreviewModalBtn.addEventListener("click", function () {
+    closeModal(previewModal);
+  });
+
+
   return cardElement;
 }
 
@@ -131,4 +148,6 @@ initialCards.forEach(function (item) {
   let createdCard = getCardElement(item);
   cardsList.prepend(createdCard);
 });
+
+
 
