@@ -1,3 +1,6 @@
+.card {
+  position: relative;
+}
 .card__image {
   display: block;
   width: 413px;
@@ -46,6 +49,22 @@
 
 .card__like-btn_active:hover{
   opacity: .4;
+}
+
+.card__del-btn {
+  cursor: pointer;
+  background-image: url(../images/State=Default.svg);
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.card__del-btn:hover{
+  background-image: url(../images/State=Hover.svg);
 }
 
 @media screen and (max-width: 430px) {

@@ -1,4 +1,10 @@
 const initialCards = [
+
+  {
+    name: "Landscape example",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"
+  },
+
   {
     name: "A multi-story library filled with bookshelves.",
     link: "https://images.unsplash.com/photo-1741850820882-1cb02da0f04f?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1MHx8fGVufDB8fHx8fA%3D%3D",
@@ -104,15 +110,19 @@ function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardTitle = cardElement.querySelector(".card__title");
   const cardImage = cardElement.querySelector(".card__image");
-  const likeBtn = cardElement.querySelector(".card__like-btn");
-
-  likeBtn.addEventListener("click", () => {
-    likeBtn.classList.toggle("card__like-btn_active");
-    opacity: 1;
-  });
   cardTitle.textContent = data.name;
   cardImage.alt = data.name;
   cardImage.src = data.link;
+
+  const likeBtn = cardElement.querySelector(".card__like-btn");
+  likeBtn.addEventListener("click", () => {
+    likeBtn.classList.toggle("card__like-btn_active");
+  });
+  const delBtn = cardElement.querySelector(".card__del-btn");
+  delBtn.addEventListener("click", () => {
+    cardElement.remove();
+    cardElement = null;
+  });
 
   return cardElement;
 }
@@ -121,3 +131,4 @@ initialCards.forEach(function (item) {
   let createdCard = getCardElement(item);
   cardsList.prepend(createdCard);
 });
+
