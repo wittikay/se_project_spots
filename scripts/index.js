@@ -39,14 +39,14 @@ const initialCards = [
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileEditModal = document.querySelector("#edit-profile-modal");
 const closeEditModalBtn = profileEditModal.querySelector(".modal__close-btn");
-const editProfileForm = profileEditModal.querySelector(".modal__form");
+const editProfileForm = document.forms["modal__form"];
 
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const editProfileName = profileEditModal.querySelector("#name");
 const editProfileDescription = profileEditModal.querySelector("#description");
 
-const openModal = function (modal) {
+const openModal = (modal) => {
   modal.classList.add("modal_is-opened");
 };
 const closeModal = function (modal) {
@@ -90,8 +90,8 @@ closeAddModalBtn.addEventListener("click", function () {
 // Preview image
 const previewModal = document.querySelector("#preview-modal");
 const closePreviewModalBtn = previewModal.querySelector(".modal__close-btn_preview");
-let previewImage = previewModal.querySelector(".modal__image");
-let previewCaption = previewModal.querySelector(".modal__caption");
+const previewImage = previewModal.querySelector(".modal__image");
+const previewCaption = previewModal.querySelector(".modal__caption");
 
 function handleProfileAddFormSubmit(evt) {
   evt.preventDefault();
@@ -99,8 +99,9 @@ function handleProfileAddFormSubmit(evt) {
     name: profileAddCaption.value,
     link: profileAddLink.value,
   };
-  let createdCard = getCardElement(inputValues);
+  const createdCard = getCardElement(inputValues);
   cardsList.prepend(createdCard);
+  profileAddForm.reset();
   closeModal(profileAddModal);
 }
 
@@ -127,7 +128,6 @@ function getCardElement(data) {
   const delBtn = cardElement.querySelector(".card__del-btn");
   delBtn.addEventListener("click", () => {
     cardElement.remove();
-    cardElement = null;
   });
 
   cardImage.addEventListener("click", () => {
@@ -145,7 +145,7 @@ function getCardElement(data) {
 }
 
 initialCards.forEach(function (item) {
-  let createdCard = getCardElement(item);
+  const createdCard = getCardElement(item);
   cardsList.prepend(createdCard);
 });
 

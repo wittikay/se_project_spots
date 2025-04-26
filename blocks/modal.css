@@ -63,6 +63,9 @@
   letter-spacing: 0%;
   margin: 8px 0;
   padding: 4px 8px;
+  background-color: rgba(33, 33, 33, 1);
+  width: fit-content;
+  border-radius: 8px;
 }
 
 .modal__close-btn {
