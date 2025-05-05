@@ -85,6 +85,9 @@
             <label for="name" class="modal__label">
               Name
               <input
+                required
+                min-length="2"
+                max-length="40"
                 id="name"
                 type="text"
                 placeholder="Type your name"
@@ -94,6 +97,9 @@
             <label for="description" class="modal__label">
               Description
               <input
+                required
+                min-length="2"
+                max-length="200"
                 id="description"
                 type="text"
                 placeholder="Describe yourself"
@@ -117,6 +123,7 @@
             <label for="name" class="modal__label">
               Image link
               <input
+                required
                 id="link"
                 type="url"
                 placeholder="Paste a link to the picture"
@@ -126,6 +133,9 @@
             <label for="description" class="modal__label">
               Caption
               <input
+                required
+                min-length="2"
+                max-length="30"
                 id="caption"
                 type="text"
                 placeholder="Type your caption"

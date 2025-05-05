@@ -53,12 +53,12 @@ const closeModal = function (modal) {
   modal.classList.remove("modal_is-opened");
 };
 
-profileEditBtn.addEventListener("click", function () {
+profileEditBtn.addEventListener("click", () => {
   editProfileName.value = profileName.textContent;
   editProfileDescription.value = profileDescription.textContent;
   openModal(profileEditModal);
 });
-closeEditModalBtn.addEventListener("click", function () {
+closeEditModalBtn.addEventListener("click", () => {
   closeModal(profileEditModal);
 });
 
@@ -80,10 +80,10 @@ const profileAddForm = profileAddModal.querySelector(".modal__form");
 const profileAddLink = profileAddModal.querySelector("#link");
 const profileAddCaption = profileAddModal.querySelector("#caption");
 
-profileAddBtn.addEventListener("click", function () {
+profileAddBtn.addEventListener("click", () => {
   openModal(profileAddModal);
 });
-closeAddModalBtn.addEventListener("click", function () {
+closeAddModalBtn.addEventListener("click", () => {
   closeModal(profileAddModal);
 });
 
@@ -136,7 +136,7 @@ function getCardElement(data) {
     previewCaption.textContent = data.name;
     openModal(previewModal);
   });
-  closePreviewModalBtn.addEventListener("click", function () {
+  closePreviewModalBtn.addEventListener("click", () => {
     closeModal(previewModal);
   });
 
