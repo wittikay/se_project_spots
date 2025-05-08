@@ -48,8 +48,8 @@
   opacity: 1;
 }
 
-.card__like-btn_active:hover{
-  opacity: .4;
+.card__like-btn_active:hover {
+  opacity: 0.4;
 }
 
 .card__del-btn {
@@ -64,7 +64,7 @@
   right: 10px;
 }
 
-.card__del-btn:hover{
+.card__del-btn:hover {
   background-image: url(../images/State=Hover.svg);
 }
 

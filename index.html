@@ -55,11 +55,7 @@
             <template id="cards__template">
               <li class="card">
                 <button type="button" class="card__del-btn"></button>
-                <img
-                  src="#"
-                  alt=""
-                  class="card__image"
-                />
+                <img src="#" alt="" class="card__image" />
                 <div class="card__content">
                   <h2 class="card__title"></h2>
                   <button type="button" class="card__like-btn"></button>
@@ -93,6 +89,7 @@
                 placeholder="Type your name"
                 class="modal__input"
               />
+              <span id="name-error" class="modal__error"></span>
             </label>
             <label for="description" class="modal__label">
               Description
@@ -105,6 +102,7 @@
                 placeholder="Describe yourself"
                 class="modal__input"
               />
+              <span id="description-error" class="modal__error"></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
@@ -129,6 +127,7 @@
                 placeholder="Paste a link to the picture"
                 class="modal__input"
               />
+              <span id="link-error" class="modal__error"></span>
             </label>
             <label for="description" class="modal__label">
               Caption
@@ -141,6 +140,7 @@
                 placeholder="Type your caption"
                 class="modal__input"
               />
+              <span id="caption-error" class="modal__error"></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
@@ -148,17 +148,18 @@
       </div>
       <div class="modal modal__type_preview" id="preview-modal">
         <div class="modal__preview-container">
-          <img class ="modal__image" src="">
+          <img class="modal__image" src="" />
           <p class="modal__caption"></p>
-          <button type="button" class="modal__close-btn modal__close-btn_preview">
-            <img
-              src="./images/close-iconwht.svg"
-              alt=""
-            />
+          <button
+            type="button"
+            class="modal__close-btn modal__close-btn_preview"
+          >
+            <img src="./images/close-iconwht.svg" alt="" />
           </button>
         </div>
       </div>
     </div>
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validation.js" defer></script>
   </body>
 </html>
