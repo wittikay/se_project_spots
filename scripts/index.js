@@ -120,6 +120,11 @@ const closePreviewModalBtn = previewModal.querySelector(
 const previewImage = previewModal.querySelector(".modal__image");
 const previewCaption = previewModal.querySelector(".modal__caption");
 
+const renderCard = (cardData, container) => {
+  const cardElement = getCardElement(cardData); // Create the card element
+  container.prepend(cardElement); // Add the card element to the container
+};
+
 function handleProfileAddFormSubmit(evt) {
   evt.preventDefault();
   const inputValues = {
@@ -127,7 +132,7 @@ function handleProfileAddFormSubmit(evt) {
     link: profileAddLink.value,
   };
   const createdCard = getCardElement(inputValues);
-  cardsList.prepend(createdCard);
+  renderCard(inputValues, cardsList);
   profileAddForm.reset();
   disableBtn(modalSaveBtn, settings);
   closeModal(profileAddModal);
@@ -155,14 +160,13 @@ function getCardElement(data) {
   addDeleteListener(delBtn, cardElement);
 
   addPreviewListener(cardImage, data);
-  addCloseModalListener(closePreviewModalBtn, previewModal);
 
   return cardElement;
 }
+addCloseModalListener(closePreviewModalBtn, previewModal);
 
-initialCards.forEach(function (item) {
-  const createdCard = getCardElement(item);
-  cardsList.prepend(createdCard);
+initialCards.forEach((item) => {
+  renderCard(item, cardsList);
 });
 
 
@@ -184,5 +188,3 @@ const handleEscKey = (evt) => {
 };
 
 // Add event listeners for all modals
-document.addEventListener("keydown", handleEscKey);
-document.addEventListener("click", handleOverlayClick);
