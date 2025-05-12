@@ -48,10 +48,13 @@ const editProfileDescription = profileEditModal.querySelector("#description");
 const openModal = (modal) => {
   modal.classList.add("modal_is-opened");
   document.addEventListener("keydown", handleEscKey);
-};
+  modal.addEventListener("click", handleOverlayClick);
+  };
+
 const closeModal = function (modal) {
   modal.classList.remove("modal_is-opened");
   document.removeEventListener("keydown", handleEscKey);
+  modal.removeEventListener("click", handleOverlayClick);
 };
 
 const addOpenModalListener = (trigger, modal) => {
@@ -131,7 +134,6 @@ function handleProfileAddFormSubmit(evt) {
     name: profileAddCaption.value,
     link: profileAddLink.value,
   };
-  const createdCard = getCardElement(inputValues);
   renderCard(inputValues, cardsList);
   profileAddForm.reset();
   disableBtn(modalSaveBtn, settings);
