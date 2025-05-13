@@ -49,7 +49,7 @@ const openModal = (modal) => {
   modal.classList.add("modal_is-opened");
   document.addEventListener("keydown", handleEscKey);
   modal.addEventListener("click", handleOverlayClick);
-  };
+};
 
 const closeModal = function (modal) {
   modal.classList.remove("modal_is-opened");
@@ -89,6 +89,10 @@ const addPreviewListener = (cardImage, data) => {
 profileEditBtn.addEventListener("click", () => {
   editProfileName.value = profileName.textContent;
   editProfileDescription.value = profileDescription.textContent;
+  const inputLi = Array.from(
+    editProfileForm.querySelectorAll(settings.inputSelector)
+  );
+  resetValidation(editProfileForm, inputLi, settings);
   openModal(profileEditModal);
 });
 addCloseModalListener(closeEditModalBtn, profileEditModal);
@@ -114,6 +118,19 @@ const profileAddCaption = profileAddModal.querySelector("#caption");
 
 addOpenModalListener(profileAddBtn, profileAddModal);
 addCloseModalListener(closeAddModalBtn, profileAddModal);
+
+profileAddBtn.addEventListener("click", () => {
+  profileAddForm.reset(); // Optional if you want to clear it explicitly on open
+  const inputLi = Array.from(
+    profileAddForm.querySelectorAll(settings.inputSelector)
+  );
+  resetValidation(profileAddForm, inputLi, settings);
+  disableBtn(
+    profileAddForm.querySelector(settings.submitButtonSelector),
+    settings
+  );
+  openModal(profileAddModal);
+});
 
 // Preview image
 const previewModal = document.querySelector("#preview-modal");
@@ -170,7 +187,6 @@ addCloseModalListener(closePreviewModalBtn, previewModal);
 initialCards.forEach((item) => {
   renderCard(item, cardsList);
 });
-
 
 // Function to close the modal when clicking outside its borders
 const handleOverlayClick = (evt) => {

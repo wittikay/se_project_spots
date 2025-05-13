@@ -82,8 +82,8 @@
               Name
               <input
                 required
-                min-length="2"
-                max-length="40"
+                minlength="2"
+                maxlength="40"
                 id="name"
                 type="text"
                 placeholder="Type your name"
@@ -95,8 +95,8 @@
               Description
               <input
                 required
-                min-length="2"
-                max-length="200"
+                minlength="2"
+                maxlength="200"
                 id="description"
                 type="text"
                 placeholder="Describe yourself"
@@ -118,7 +118,7 @@
             />
           </button>
           <form name="new-post" class="modal__form">
-            <label for="name" class="modal__label">
+            <label for="link" class="modal__label">
               Image link
               <input
                 required
@@ -129,12 +129,12 @@
               />
               <span id="link-error" class="modal__error"></span>
             </label>
-            <label for="description" class="modal__label">
+            <label for="caption" class="modal__label">
               Caption
               <input
                 required
-                min-length="2"
-                max-length="30"
+                minlength="2"
+                maxlength="30"
                 id="caption"
                 type="text"
                 placeholder="Type your caption"
@@ -154,7 +154,7 @@
             type="button"
             class="modal__close-btn modal__close-btn_preview"
           >
-            <img src="./images/close-iconwht.svg" alt="" />
+            <img src="./images/close-iconwht.svg" alt="A white X that indicates a close button." />
           </button>
         </div>
       </div>

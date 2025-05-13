@@ -63,4 +63,9 @@ const enableValidation = (config) => {
     setEventListeners(formEl, config);
   });
 };
+const resetValidation = (formEl, inputLi, config) => {
+  inputLi.forEach((inputEl) => {
+    hideInputError(formEl, inputEl, config);
+  });
+};
 enableValidation(settings);
