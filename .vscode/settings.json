@@ -5,5 +5,9 @@
         "markdown": false,
         "scminput": false
     },
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "editor.smoothScrolling": false,
+    "workbench.list.smoothScrolling": true,
+    "terminal.integrated.smoothScrolling": true,
+    "terminal.integrated.scrollback": 1000
 }
