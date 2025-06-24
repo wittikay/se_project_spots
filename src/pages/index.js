@@ -1,3 +1,4 @@
+// ========== Imports ==========
 import "./index.css";
 import { Api } from "../utils/Api.js";
 import {
@@ -6,7 +7,6 @@ import {
   disableBtn,
   settings,
 } from "../scripts/validation.js";
-
 import headerLogoSrc from "../images/Logo.svg";
 import profileAvatarPencilSrc from "../images/pencil-whte.svg";
 import profileImgSrc from "../images/avatar.jpg";
@@ -15,50 +15,38 @@ import profileAddImgSrc from "../images/Group-26.svg";
 import modalBlackXSrc from "../images/close-iconblk.svg";
 import modalWhiteXSrc from "../images/close-iconwht.svg";
 
+// ========== Globals ==========
+let currentUserId;
+let selectedCard = null, selectedCardId = null;
+
 // ========== DOM Elements ==========
 const dom = {
-  // Header & Profile
   headerLogo: document.getElementById("header__logo"),
   profileImg: document.getElementById("profile__image"),
   profileAvatarPencil: document.getElementById("profile__image-btn-img"),
   profileEditImg: document.getElementById("profile__edit-btn-img"),
   profileAddImg: document.getElementById("profile__add-btn-img"),
-  // Modal Close Icons
   avatarModalBlackX: document.getElementById("modal__close-btn-img-avatar"),
   deleteModalWhiteX: document.getElementById("modal__close-btn-img-delete"),
   editModalBlackX: document.getElementById("modal__close-btn-img-edit"),
   addModalBlackX: document.getElementById("modal__close-btn-img-add"),
   modalWhiteX: document.getElementById("modal__close-btn-img-whte"),
-  // Card
   cardsList: document.querySelector(".cards__list"),
-  cardTemplate: document
-    .getElementById("cards__template")
-    .content.querySelector(".card"),
-  // Avatar Edit Modal
+  cardTemplate: document.getElementById("cards__template").content.querySelector(".card"),
   avatarEditForm: document.forms["edit-avatar-form"],
   avatarEditBtn: document.querySelector(".profile__image-btn"),
-  avatarEditSaveBtn: document.querySelector(
-    "#edit-avatar-modal .modal__submit-btn"
-  ),
+  avatarEditSaveBtn: document.querySelector("#edit-avatar-modal .modal__submit-btn"),
   avatarEditModal: document.querySelector("#edit-avatar-modal"),
   avatarEditInput: document.querySelector("#edit-avatar-modal #link"),
-  avatarCloseBtn: document.querySelector(
-    "#edit-avatar-modal .modal__close-btn"
-  ),
-  // Profile Edit Modal
+  avatarCloseBtn: document.querySelector("#edit-avatar-modal .modal__close-btn"),
   profileEditBtn: document.querySelector(".profile__edit-btn"),
   profileEditModal: document.querySelector("#edit-profile-modal"),
-  closeEditModalBtn: document.querySelector(
-    "#edit-profile-modal .modal__close-btn"
-  ),
+  closeEditModalBtn: document.querySelector("#edit-profile-modal .modal__close-btn"),
   editProfileForm: document.forms["edit-profile"],
   profileName: document.querySelector(".profile__name"),
   profileDescription: document.querySelector(".profile__description"),
   editProfileName: document.querySelector("#edit-profile-modal #name"),
-  editProfileDescription: document.querySelector(
-    "#edit-profile-modal #description"
-  ),
-  // Add Post Modal
+  editProfileDescription: document.querySelector("#edit-profile-modal #description"),
   profileAddBtn: document.querySelector(".profile__add-btn"),
   profileAddModal: document.querySelector("#new-post-modal"),
   closeAddModalBtn: document.querySelector("#new-post-modal .modal__close-btn"),
@@ -66,22 +54,18 @@ const dom = {
   profileAddForm: document.querySelector("#new-post-modal .modal__form"),
   profileAddLink: document.querySelector("#new-post-modal #link"),
   profileAddCaption: document.querySelector("#new-post-modal #caption"),
-  // Delete Post Modal
   deletePostModal: document.querySelector("#delete-modal"),
   submitDeletePostBtn: document.querySelector(".modal__delSubmit-btn"),
   cancelDeletePostBtn: document.querySelector(".modal__delCancel-btn"),
   closeDeletePostModalBtn: document.querySelector(".modal__delModal-close-btn"),
-  // Preview Modal
   previewModal: document.getElementById("preview-modal"),
-  closePreviewModalBtn: document.querySelector(
-    "#preview-modal .modal__close-btn_preview"
-  ),
+  closePreviewModalBtn: document.querySelector("#preview-modal .modal__close-btn_preview"),
   previewImage: document.querySelector("#preview-modal .modal__image"),
   previewCaption: document.querySelector("#preview-modal .modal__caption"),
 };
 
 // ========== Set Image Sources ==========
-function setImageSources() {
+(function setImageSources() {
   dom.headerLogo.src = headerLogoSrc;
   dom.profileImg.src = profileImgSrc;
   dom.profileAvatarPencil.src = profileAvatarPencilSrc;
@@ -92,8 +76,7 @@ function setImageSources() {
   dom.profileEditImg.src = profileEditImgSrc;
   dom.profileAddImg.src = profileAddImgSrc;
   dom.modalWhiteX.src = modalWhiteXSrc;
-}
-setImageSources();
+})();
 
 // ========== API Instance ==========
 const api = new Api({
@@ -105,28 +88,28 @@ const api = new Api({
 });
 
 // ========== Modal Helpers ==========
-function openModal(modal) {
+const openModal = (modal) => {
   modal.classList.add("modal_is-opened");
   document.addEventListener("keydown", handleEscKey);
   modal.addEventListener("click", handleOverlayClick);
-}
+};
 
-function closeModal(modal) {
+const closeModal = (modal) => {
   modal.classList.remove("modal_is-opened");
   document.removeEventListener("keydown", handleEscKey);
   modal.removeEventListener("click", handleOverlayClick);
-}
+};
 
-function addOpenModalListener(trigger, modal, cb) {
+const addOpenModalListener = (trigger, modal, cb) => {
   trigger.addEventListener("click", () => {
     if (cb) cb();
     openModal(modal);
   });
-}
+};
 
-function addCloseModalListener(button, modal) {
+const addCloseModalListener = (button, modal) => {
   button.addEventListener("click", () => closeModal(modal));
-}
+};
 
 function handleOverlayClick(evt) {
   if (evt.target.classList.contains("modal_is-opened")) {
@@ -142,13 +125,13 @@ function handleEscKey(evt) {
 }
 
 // ========== Card Helpers ==========
-function handleLikeClick(evt, cardId) {
-  const likeBtn = evt.target;
+function handleLikeClick(likeBtn, cardId) {
   const isLiked = likeBtn.classList.contains("card__like-btn_active");
   api
     .changeLikeStatus(cardId, !isLiked)
-    .then(() => {
-      likeBtn.classList.toggle("card__like-btn_active", !isLiked);
+    .then((card) => {
+      const isNowLiked = card.isLiked;
+      likeBtn.classList.toggle("card__like-btn_active", isNowLiked);
     })
     .catch((err) => console.error("Error changing like status:", err));
 }
@@ -160,19 +143,19 @@ function getCardElement(data) {
   cardImage.alt = data.name;
   cardImage.src = data.link;
 
-  // Like
-  cardElement
-    .querySelector(".card__like-btn")
-    .addEventListener("click", (evt) => handleLikeClick(evt, data._id));
+  const likeBtn = cardElement.querySelector(".card__like-btn");
+  const isLiked = (data.likes || []).some((user) => user._id === currentUserId);
+  likeBtn.classList.toggle("card__like-btn_active", isLiked);
 
-  // Delete
-  cardElement
-    .querySelector(".card__del-btn")
-    .addEventListener("click", () => handleDelCard(cardElement, data));
+  if (data.isLiked) {
+    likeBtn.classList.add("card__like-btn_active");
+  } else {
+    likeBtn.classList.remove("card__like-btn_active");
+  }
 
-  // Preview
+  likeBtn.addEventListener("click", () => handleLikeClick(likeBtn, data._id));
+  cardElement.querySelector(".card__del-btn").addEventListener("click", () => handleDelCard(cardElement, data));
   cardImage.addEventListener("click", () => openPreviewModal(data));
-
   return cardElement;
 }
 
@@ -189,9 +172,6 @@ function openPreviewModal(data) {
 }
 
 // ========== Delete Card ==========
-let selectedCard = null,
-  selectedCardId = null;
-
 function handleDelCard(cardElement, data) {
   selectedCard = cardElement;
   selectedCardId = data._id;
@@ -282,18 +262,18 @@ dom.profileAddForm.addEventListener("submit", (evt) => {
     })
     .then((card) => {
       renderCard(card, dom.cardsList);
+      dom.profileAddForm.reset();
+      disableBtn(dom.modalSaveBtn, settings);
       closeModal(dom.profileAddModal);
     })
     .catch((err) => console.error("Error adding new card:", err));
-  dom.profileAddForm.reset();
-  disableBtn(dom.modalSaveBtn, settings);
-  closeModal(dom.profileAddModal);
 });
 
 // ========== Initial Data Load ==========
 api
   .getAppInfo()
   .then(([user, cards]) => {
+    currentUserId = user._id;
     dom.profileName.textContent = user.name;
     dom.profileDescription.textContent = user.about;
     dom.profileImg.src = user.avatar;
