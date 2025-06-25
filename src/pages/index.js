@@ -227,7 +227,6 @@ addOpenModalListener(dom.profileEditBtn, dom.profileEditModal, () => {
 addCloseModalListener(dom.closeEditModalBtn, dom.profileEditModal);
 
 addOpenModalListener(dom.profileAddBtn, dom.profileAddModal, () => {
-  dom.profileAddForm.reset();
   resetValidation(
     dom.profileAddForm,
     Array.from(dom.profileAddForm.querySelectorAll(settings.inputSelector)),
