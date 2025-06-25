@@ -178,11 +178,11 @@ function handleDelSubmit(evt) {
       closeModal(dom.deletePostModal);
       selectedCard = null;
       selectedCardId = null;
+      disableBtn(dom.submitDeletePostBtn, settings);
     })
     .catch((err) => console.error("Error deleting card:", err))
     .finally(() => {
       setButtonText(dom.submitDeletePostBtn, "Delete");
-      disableBtn(dom.submitDeletePostBtn, settings);
     });
 }
 dom.submitDeletePostBtn.addEventListener("click", handleDelSubmit);
