@@ -249,6 +249,44 @@
   border: 1px solid rgba(255, 0, 0, 0.6);
 }
 
+@media screen and (max-width: 835px) {
+  .modal__del-container {
+    padding: 12px 12px;
+  }
+  .modal_delete-title {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 120%;
+  }
+  .modal_delImgBtn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+    gap: 0;
+  }
+  .modal__delSubmit-btn {
+    margin-bottom: 12px;
+    margin-top: 20px;
+    min-width: 156px;
+  }
+  .modal__delCancel-btn {
+    margin-top: 0;
+    min-width: 156px;
+  }
+  .modal__delModal-close-btn {
+    right: -6px;
+        top: -56px;
+
+  }
+  .modal {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+
 @media screen and (max-width: 800px) {
   .modal__title {
     font-size: 20px;
