@@ -49,6 +49,7 @@ const avatarCloseBtn = document.querySelector(
 );
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const profileEditModal = document.querySelector("#edit-profile-modal");
+const editModalSaveBtn = profileEditModal.querySelector(".modal__submit-btn");
 const closeEditModalBtn = document.querySelector(
   "#edit-profile-modal .modal__close-btn"
 );
@@ -64,7 +65,6 @@ const profileAddModal = document.querySelector("#new-post-modal");
 const closeAddModalBtn = document.querySelector(
   "#new-post-modal .modal__close-btn"
 );
-const modalSaveBtn = document.querySelector(".modal__submit-btn");
 const profileAddForm = document.querySelector("#new-post-modal .modal__form");
 const addModalSaveBtn = profileAddModal.querySelector(".modal__submit-btn");
 const profileAddLink = document.querySelector("#new-post-modal #link");
@@ -185,8 +185,6 @@ function openPreviewModal(data) {
 function handleDelCard(cardElement, data) {
   selectedCard = cardElement;
   selectedCardId = data._id;
-  submitDeletePostBtn.disabled = false;
-  submitDeletePostBtn.classList.remove("modal__submit_inactive");
   openModal(deletePostModal);
 }
 
@@ -200,7 +198,6 @@ function handleDelSubmit(evt) {
       closeModal(deletePostModal);
       selectedCard = null;
       selectedCardId = null;
-      disableBtn(submitDeletePostBtn, settings);
     })
     .catch((err) => console.error("Error deleting card:", err))
     .finally(() => {
@@ -223,17 +220,14 @@ function handleAvatarEditSave(evt) {
     .catch((err) => console.error("Error updating avatar:", err))
     .finally(() => {
       setButtonText(avatarEditSaveBtn, "Save");
-      disableBtn(avatarEditSaveBtn, settings);
     });
 }
 avatarEditForm.addEventListener("submit", handleAvatarEditSave);
 
 addOpenModalListener(avatarEditBtn, avatarEditModal, () => {
-  resetValidation(
-    avatarEditModal,
+  avatarEditModal,
     Array.from(avatarEditModal.querySelectorAll(settings.inputSelector)),
-    settings
-  );
+    settings;
 });
 addCloseModalListener(avatarCloseBtn, avatarEditModal);
 
@@ -249,10 +243,7 @@ addOpenModalListener(profileEditBtn, profileEditModal, () => {
 addCloseModalListener(closeEditModalBtn, profileEditModal);
 
 addOpenModalListener(profileAddBtn, profileAddModal, () => {
-  (
-    profileAddForm.querySelector(settings.submitButtonSelector),
-    settings
-  );
+  profileAddForm.querySelector(settings.submitButtonSelector), settings;
 });
 addCloseModalListener(closeAddModalBtn, profileAddModal);
 
@@ -262,7 +253,7 @@ addCloseModalListener(closePreviewModalBtn, previewModal);
 
 editProfileForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  setButtonText(modalSaveBtn, "Saving...");
+  setButtonText(editModalSaveBtn, "Saving...");
   api
     .editUserInfo({
       name: editProfileName.value,
@@ -272,23 +263,19 @@ editProfileForm.addEventListener("submit", (evt) => {
       profileImg.src = user.avatar;
       profileName.textContent = user.name;
       profileDescription.textContent = user.about;
+      disableBtn(editModalSaveBtn, settings);
       closeModal(profileEditModal);
     })
     .catch((err) => console.error("Error updating user info:", err))
     .finally(() => {
-      setButtonText(modalSaveBtn, "Save");
-      disableBtn(modalSaveBtn, settings);
+      setButtonText(editModalSaveBtn, "Save");
     });
 });
 
 profileAddForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
-  addModalSaveBtn.textContent = "Saving...";
-  console.log("Add card payload:", {
-  name: profileAddCaption.value,
-  link: profileAddLink.value,
-});
+  setButtonText(addModalSaveBtn, "Saving...");
   api
     .addNewCard({
       name: profileAddCaption.value,
@@ -297,13 +284,12 @@ profileAddForm.addEventListener("submit", (evt) => {
     .then((card) => {
       renderCard(card, cardsList);
       profileAddForm.reset();
-      disableBtn(modalSaveBtn, settings);
+      disableBtn(addModalSaveBtn, settings);
       closeModal(profileAddModal);
     })
     .catch((err) => console.error("Error adding new card:", err))
     .finally(() => {
-      addModalSaveBtn.textContent = "Save";
-      disableBtn(modalSaveBtn, settings);
+      setButtonText(addModalSaveBtn, "Save");
     });
 });
 
