@@ -34,6 +34,17 @@
   box-sizing: border-box;
 }
 
+.modal__del-container {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 8px;
+  max-width: 730px;
+  padding: 36px 50px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .modal__preview-container {
   position: relative;
 }
@@ -55,6 +66,14 @@
   padding: 0;
 }
 
+.modal_delete-title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .modal__caption {
   color: white;
   font-size: 20px;
@@ -69,6 +88,8 @@
 }
 
 .modal__close-btn {
+  display: flex;
+  justify-content: center;
   background-color: transparent;
   border-style: none;
   position: absolute;
@@ -79,6 +100,23 @@
   opacity: 40%;
 }
 
+.modal__delModal-close-btn {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  border-style: none;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 0px;
+  right: -52px;
+
+}
+
+.modal__close-btn-img-delete {
+  right: 10px;
+}
+
 .modal__close-btn_preview {
   top: -5px;
   right: -50px;
@@ -87,6 +125,18 @@
 .modal__close-btn:hover {
   cursor: pointer;
   opacity: 100%;
+}
+
+.modal__delModal-close-btn:hover {
+  cursor: pointer;
+}
+
+
+.modal_delImgBtn-container {
+  margin-right: 149px;
+  margin-left: 149px;
+  display: flex;
+  gap: 20px;
 }
 
 .modal__label {
@@ -135,10 +185,49 @@
   border-style: none;
 }
 
+.modal__delSubmit-btn {
+  color: black;
+  background-color: #FF6565;
+  font-weight: 500;
+  font-size: 16px;
+  width: 100%;
+  max-width: 156px;
+  padding: 18px 32px;
+  margin-top: 32px;
+  border-radius: 8px;
+  border-style: none;
+}
+
+.modal__delCancel-btn {
+  color: black;
+  background-color: white;
+  font-weight: 500;
+  font-size: 16px;
+  width: 100%;
+  max-width: 156px;
+  padding: 18px 32px;
+  margin-top: 32px;
+  border-radius: 8px;
+  border-width: 1px;
+
+}
+
 .modal__submit-btn:hover {
   cursor: pointer;
   background-color: rgba(33, 33, 33, 0.8);
 }
+
+.modal__delSubmit-btn:hover {
+  cursor: pointer;
+  background-color: #FF3333;
+}
+
+.modal__delCancel-btn:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #212121;
+}
+
 
 .modal__submit_inactive {
   opacity: 0.5;
@@ -159,6 +248,44 @@
 .modal__input_type_error {
   border: 1px solid rgba(255, 0, 0, 0.6);
 }
+
+@media screen and (max-width: 835px) {
+  .modal__del-container {
+    padding: 12px 12px;
+  }
+  .modal_delete-title {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 120%;
+  }
+  .modal_delImgBtn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+    gap: 0;
+  }
+  .modal__delSubmit-btn {
+    margin-bottom: 12px;
+    margin-top: 20px;
+    min-width: 156px;
+  }
+  .modal__delCancel-btn {
+    margin-top: 0;
+    min-width: 156px;
+  }
+  .modal__delModal-close-btn {
+    right: -6px;
+        top: -56px;
+
+  }
+  .modal {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
 
 @media screen and (max-width: 800px) {
   .modal__title {
